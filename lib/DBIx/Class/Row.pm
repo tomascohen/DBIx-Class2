@@ -1497,7 +1497,7 @@ sub get_from_storage {
       $resultset = $resultset->search(undef, $attrs);
     }
 
-    return $resultset->find($self->_storage_ident_condition);
+    return $resultset->find($self->_storage_ident_condition, { key => "primary" });
 }
 
 =head2 discard_changes
