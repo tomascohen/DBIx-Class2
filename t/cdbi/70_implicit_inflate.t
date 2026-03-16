@@ -8,11 +8,11 @@ use warnings;
 # of the "" operator.
 
 use Test::More;
-use DBIx::Class::Optional::Dependencies;
+use DBIx::Class2::Optional::Dependencies;
 
 BEGIN {
-  plan skip_all => "Test needs ".DBIx::Class::Optional::Dependencies->req_missing_for('test_dt_sqlite')
-    unless DBIx::Class::Optional::Dependencies->req_ok_for('test_dt_sqlite');
+  plan skip_all => "Test needs ".DBIx::Class2::Optional::Dependencies->req_missing_for('test_dt_sqlite')
+    unless DBIx::Class2::Optional::Dependencies->req_ok_for('test_dt_sqlite');
 }
 
 use lib 't/cdbi/testlib';

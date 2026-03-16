@@ -70,7 +70,7 @@ use File::Spec;
 use List::Util 'max';
 use ExtUtils::MakeMaker;
 
-use DBIx::Class::Optional::Dependencies;
+use DBIx::Class2::Optional::Dependencies;
 
 my $known_paths = {
   SA => {
@@ -210,13 +210,13 @@ my @known_modules = sort
   map
     { $_ => 1 }
     map
-      { keys %{ DBIx::Class::Optional::Dependencies->req_list_for($_) } }
+      { keys %{ DBIx::Class2::Optional::Dependencies->req_list_for($_) } }
       grep
         # some DBDs are notoriously problematic to load
         # hence only show stuff based on test_rdbms which will
         # take into account necessary ENVs
         { $_ !~ /^ (?: rdbms | dist )_ /x }
-        keys %{DBIx::Class::Optional::Dependencies->req_group_list}
+        keys %{DBIx::Class2::Optional::Dependencies->req_group_list}
 ;
 
 try_module_require($_) for @known_modules;
@@ -433,7 +433,7 @@ present on this system (modules sourced from ./blib, ./lib, ./t, and ./xt
 with versions identical to their parent namespace were omitted for brevity)
 
     *** Note that *MANY* of these modules will *NEVER* be loaded ***
-            *** during normal operation of DBIx::Class ***
+            *** during normal operation of DBIx::Class2 ***
 EOD
 
 # pre-assemble everything and print it in one shot

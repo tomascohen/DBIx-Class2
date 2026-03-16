@@ -3,8 +3,8 @@ use strict;
 
 BEGIN { delete $ENV{DBICTEST_VERSION_WARNS_INDISCRIMINATELY} }
 
-use DBIx::Class::_Util 'sigwarn_silencer';
-use if DBIx::Class::_ENV_::BROKEN_FORK, 'threads';
+use DBIx::Class2::_Util 'sigwarn_silencer';
+use if DBIx::Class2::_ENV_::BROKEN_FORK, 'threads';
 
 use Test::More;
 use File::Find;
@@ -32,7 +32,7 @@ find({
 
     return unless ( -f $_ and $_ =~ /\.pm$/ );
 
-    if (DBIx::Class::_ENV_::BROKEN_FORK) {
+    if (DBIx::Class2::_ENV_::BROKEN_FORK) {
       # older perls crash if threads are spawned way too quickly, sleep for 100 msecs
       my $t = threads->create(sub { $worker->($_) });
       sleep 0.1;

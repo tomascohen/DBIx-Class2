@@ -24,8 +24,8 @@ else {
 
   # this should always succeed - hence no error checking
   # if someone breaks OptDeps - travis should catch it
-  require DBIx::Class::Optional::Dependencies;
-  DBIx::Class::Optional::Dependencies->_gen_pod ($ver, "$pod_dir/lib");
+  require DBIx::Class2::Optional::Dependencies;
+  DBIx::Class2::Optional::Dependencies->_gen_pod ($ver, "$pod_dir/lib");
 
   postamble <<"EOP";
 
@@ -33,7 +33,7 @@ clonedir_generate_files : dbic_clonedir_gen_optdeps_pod
 
 dbic_clonedir_gen_optdeps_pod :
 \t@{[
-  $mm_proto->oneliner("DBIx::Class::Optional::Dependencies->_gen_pod(q($ver), q($pod_dir/lib))", [qw/-Ilib -MDBIx::Class::Optional::Dependencies/])
+  $mm_proto->oneliner("DBIx::Class2::Optional::Dependencies->_gen_pod(q($ver), q($pod_dir/lib))", [qw/-Ilib -MDBIx::Class2::Optional::Dependencies/])
 ]}
 
 EOP

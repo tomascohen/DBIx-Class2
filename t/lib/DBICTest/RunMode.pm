@@ -11,7 +11,7 @@ BEGIN {
       last if $frame[1] !~ m|^t/lib/DBICTest|;
     }
 
-    die __PACKAGE__ . " must be loaded before DBIx::Class (or modules using DBIx::Class) at $frame[1] line $frame[2]\n";
+    die __PACKAGE__ . " must be loaded before DBIx::Class2 (or modules using DBIx::Class2) at $frame[1] line $frame[2]\n";
   }
 
   if ( $ENV{DBICTEST_VERSION_WARNS_INDISCRIMINATELY} ) {
@@ -177,7 +177,7 @@ attempting a regular installation be it through CPAN or manually),
 please report the situation to either the mailing list or to the
 irc channel as described in
 
-http://search.cpan.org/dist/DBIx-Class/lib/DBIx/Class.pm#GETTING_HELP/SUPPORT
+http://search.cpan.org/dist/DBIx-Class2/lib/DBIx/Class.pm#GETTING_HELP/SUPPORT
 
 The DBIC team
 
@@ -213,7 +213,7 @@ sub is_author {
 
 sub is_smoker {
   return
-    ( ($ENV{TRAVIS}||'') eq 'true' and ($ENV{TRAVIS_REPO_SLUG}||'') eq 'Perl5/DBIx-Class' )
+    ( ($ENV{TRAVIS}||'') eq 'true' and ($ENV{TRAVIS_REPO_SLUG}||'') eq 'Perl5/DBIx-Class2' )
       ||
     ( $ENV{AUTOMATED_TESTING} && ! $ENV{PERL5_CPANM_IS_RUNNING} && ! $ENV{RELEASE_TESTING} )
   ;
@@ -223,7 +223,7 @@ sub is_ci {
   return (
     ($ENV{TRAVIS}||'') eq 'true'
       and
-    ($ENV{TRAVIS_REPO_SLUG}||'') =~ m|\w+/DBIx-Class$|
+    ($ENV{TRAVIS_REPO_SLUG}||'') =~ m|\w+/DBIx-Class2$|
   )
 }
 

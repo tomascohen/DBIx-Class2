@@ -4,7 +4,7 @@ use warnings;
 use Test::More;
 use lib qw(t/lib);
 use DBICTest;
-use DBIx::Class::_Util 'sigwarn_silencer';
+use DBIx::Class2::_Util 'sigwarn_silencer';
 use Class::Inspector;
 
 BEGIN {
@@ -17,8 +17,8 @@ my $schema = DBICTest->init_schema();
 plan tests => 28;
 
 # Test ensure_class_found
-ok( $schema->ensure_class_found('DBIx::Class::Schema'),
-    'loaded package DBIx::Class::Schema was found' );
+ok( $schema->ensure_class_found('DBIx::Class2::Schema'),
+    'loaded package DBIx::Class2::Schema was found' );
 ok( !Class::Inspector->loaded('DBICTest::FakeComponent'),
     'DBICTest::FakeComponent not loaded yet' );
 ok( $schema->ensure_class_found('DBICTest::FakeComponent'),
@@ -80,9 +80,9 @@ like( $@, qr/did not return a true value/,
   ok( $retval, 'PAR package "loaded"' );
 
   # see if we can still load stuff with the coderef present
-  $retval = eval { $schema->load_optional_class('DBIx::Class::ResultClass::HashRefInflator') };
+  $retval = eval { $schema->load_optional_class('DBIx::Class2::ResultClass::HashRefInflator') };
   ok( !$@, 'load_optional_class did not throw' ) || diag $@;
-  ok( $retval, 'DBIx::Class::ResultClass::HashRefInflator loaded' );
+  ok( $retval, 'DBIx::Class2::ResultClass::HashRefInflator loaded' );
 }
 
 # Test ensure_class_loaded
@@ -117,7 +117,7 @@ ok( Class::Inspector->loaded('DBICTest::FakeComponent'),
 eval {
   package Fake::ResultSet;
 
-  use base 'DBIx::Class::ResultSet';
+  use base 'DBIx::Class2::ResultSet';
 
   __PACKAGE__->load_components('+DBICTest::SyntaxErrorComponent3');
 };

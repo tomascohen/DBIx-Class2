@@ -4,7 +4,7 @@ package # hide from PAUSE
 use warnings;
 use strict;
 
-use base qw/ DBIx::Class /;
+use base qw/ DBIx::Class2 /;
 
 __PACKAGE__->load_components( qw/ +DBICTest::ForeignComponent::TestComp / );
 

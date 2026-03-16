@@ -8,8 +8,8 @@ use DBICTest;
 { # Fake storage driver for SQLite + no bind variables
   package DBICTest::SQLite::NoBindVars;
   use base qw(
-    DBIx::Class::Storage::DBI::NoBindVars
-    DBIx::Class::Storage::DBI::SQLite
+    DBIx::Class2::Storage::DBI::NoBindVars
+    DBIx::Class2::Storage::DBI::SQLite
   );
   use mro 'c3';
 }

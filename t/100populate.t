@@ -6,7 +6,7 @@ use Test::Exception;
 use Test::Warn;
 use lib qw(t/lib);
 use DBICTest;
-use DBIx::Class::_Util 'sigwarn_silencer';
+use DBIx::Class2::_Util 'sigwarn_silencer';
 use Path::Class::File ();
 use Math::BigInt;
 use List::Util qw/shuffle/;

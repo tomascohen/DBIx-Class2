@@ -14,7 +14,7 @@ my $start_file = sub {
   return join "\n",
     qq{\t\$(NOECHO) \$(RM_F) $fn},
     ( map { qq(\t\$(NOECHO) \$(ECHO) "$_" >> $fn) } (
-      "DBIx::Class is Copyright (c) 2005-@{[ (gmtime)[5] + 1900  ]} by mst, castaway, ribasushi, and others.",
+      "DBIx::Class2 is Copyright (c) 2005-@{[ (gmtime)[5] + 1900  ]} by mst, castaway, ribasushi, and others.",
       "See AUTHORS and LICENSE included with this distribution. All rights reserved.",
       "",
     )),

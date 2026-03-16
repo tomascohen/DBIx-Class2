@@ -2,16 +2,16 @@ use strict;
 use warnings;
 
 use Test::More;
-use DBIx::Class::Optional::Dependencies ();
+use DBIx::Class2::Optional::Dependencies ();
 use lib qw(t/lib);
 use DBICTest;
 use Scope::Guard ();
 
-plan skip_all => 'Test needs ' . DBIx::Class::Optional::Dependencies->req_missing_for ('test_dt')
+plan skip_all => 'Test needs ' . DBIx::Class2::Optional::Dependencies->req_missing_for ('test_dt')
 . ' and ' .
-DBIx::Class::Optional::Dependencies->req_missing_for ('test_rdbms_informix')
-  unless DBIx::Class::Optional::Dependencies->req_ok_for ('test_dt')
-    && DBIx::Class::Optional::Dependencies->req_ok_for ('test_rdbms_informix');
+DBIx::Class2::Optional::Dependencies->req_missing_for ('test_rdbms_informix')
+  unless DBIx::Class2::Optional::Dependencies->req_ok_for ('test_dt')
+    && DBIx::Class2::Optional::Dependencies->req_ok_for ('test_rdbms_informix');
 
 my ($dsn, $user, $pass) = @ENV{map { "DBICTEST_INFORMIX_${_}" } qw/DSN USER PASS/};
 

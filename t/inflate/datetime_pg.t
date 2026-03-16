@@ -3,12 +3,12 @@ use warnings;
 
 use Test::More;
 use Test::Warn;
-use DBIx::Class::Optional::Dependencies ();
+use DBIx::Class2::Optional::Dependencies ();
 use lib qw(t/lib);
 use DBICTest;
 
-plan skip_all => 'Test needs ' . DBIx::Class::Optional::Dependencies->req_missing_for ('test_dt_pg')
-  unless DBIx::Class::Optional::Dependencies->req_ok_for ('test_dt_pg');
+plan skip_all => 'Test needs ' . DBIx::Class2::Optional::Dependencies->req_missing_for ('test_dt_pg')
+  unless DBIx::Class2::Optional::Dependencies->req_ok_for ('test_dt_pg');
 
 DBICTest::Schema->load_classes('EventTZPg');
 

@@ -8,8 +8,8 @@ use DBICTest;
 { # Fake storage driver for sqlite with autocast
     package DBICTest::SQLite::AutoCast;
     use base qw/
-        DBIx::Class::Storage::DBI::AutoCast
-        DBIx::Class::Storage::DBI::SQLite
+        DBIx::Class2::Storage::DBI::AutoCast
+        DBIx::Class2::Storage::DBI::SQLite
     /;
     use mro 'c3';
 

@@ -39,8 +39,8 @@ resources 'license' => 'http://dev.perl.org/licenses/';
 
 # misc resources
 abstract_from 'lib/DBIx/Class.pm';
-resources 'repository'  => 'https://github.com/Perl5/DBIx-Class';
-resources 'bugtracker'  => 'https://rt.cpan.org/Public/Dist/Display.html?Name=DBIx-Class';
+resources 'repository'  => 'https://github.com/Perl5/DBIx-Class2';
+resources 'bugtracker'  => 'https://rt.cpan.org/Public/Dist/Display.html?Name=DBIx-Class2';
 
 # nothing determined at runtime, except for possibly SQLT dep
 # (see the check around DBICTEST_SQLT_DEPLOY in Makefile.PL)
@@ -54,10 +54,10 @@ no_index directory => $_ for (qw|
   maint
 |);
 no_index package => $_ for (qw/
-  DBIx::Class::Storage::DBIHacks
-  DBIx::Class::Storage::BlockRunner
-  DBIx::Class::Carp
-  DBIx::Class::_Util
+  DBIx::Class2::Storage::DBIHacks
+  DBIx::Class2::Storage::BlockRunner
+  DBIx::Class2::Carp
+  DBIx::Class2::_Util
 /);
 
 # keep the Makefile.PL eval happy

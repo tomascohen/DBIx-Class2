@@ -8,9 +8,9 @@ use DBICTest;
 plan skip_all => "Skipping finicky test on older perl"
   if "$]" < 5.008005;
 
-require DBIx::Class;
-unless ( DBIx::Class::Optional::Dependencies->req_ok_for ('test_podcoverage') ) {
-  my $missing = DBIx::Class::Optional::Dependencies->req_missing_for ('test_podcoverage');
+require DBIx::Class2;
+unless ( DBIx::Class2::Optional::Dependencies->req_ok_for ('test_podcoverage') ) {
+  my $missing = DBIx::Class2::Optional::Dependencies->req_missing_for ('test_podcoverage');
   $ENV{RELEASE_TESTING}
     ? die ("Failed to load release-testing module requirements: $missing")
     : plan skip_all => "Test needs: $missing"
@@ -33,7 +33,7 @@ require Test::Pod::Coverage;
 #   ignore => array ref containing list of methods which
 #             do not need to be documented.
 my $exceptions = {
-    'DBIx::Class' => {
+    'DBIx::Class2' => {
         ignore => [qw/
             MODIFY_CODE_ATTRIBUTES
             component_base_class
@@ -41,17 +41,17 @@ my $exceptions = {
             mk_classaccessor
         /]
     },
-    'DBIx::Class::Carp' => {
+    'DBIx::Class2::Carp' => {
         ignore => [qw/
             unimport
         /]
     },
-    'DBIx::Class::Row' => {
+    'DBIx::Class2::Row' => {
         ignore => [qw/
             MULTICREATE_DEBUG
         /],
     },
-    'DBIx::Class::FilterColumn' => {
+    'DBIx::Class2::FilterColumn' => {
         ignore => [qw/
             new
             update
@@ -62,7 +62,7 @@ my $exceptions = {
             has_column_loaded
         /],
     },
-    'DBIx::Class::ResultSource' => {
+    'DBIx::Class2::ResultSource' => {
         ignore => [qw/
             compare_relationship_keys
             pk_depends_on
@@ -73,50 +73,50 @@ my $exceptions = {
             STORABLE_thaw
         /],
     },
-    'DBIx::Class::ResultSet' => {
+    'DBIx::Class2::ResultSet' => {
         ignore => [qw/
             STORABLE_freeze
             STORABLE_thaw
         /],
     },
-    'DBIx::Class::ResultSourceHandle' => {
+    'DBIx::Class2::ResultSourceHandle' => {
         ignore => [qw/
             schema
             source_moniker
         /],
     },
-    'DBIx::Class::Storage' => {
+    'DBIx::Class2::Storage' => {
         ignore => [qw/
             schema
             cursor
         /]
     },
-    'DBIx::Class::Schema' => {
+    'DBIx::Class2::Schema' => {
         ignore => [qw/
             setup_connection_class
         /]
     },
 
-    'DBIx::Class::Schema::Versioned' => {
+    'DBIx::Class2::Schema::Versioned' => {
         ignore => [ qw/
             connection
         /]
     },
 
-    'DBIx::Class::Admin'        => {
+    'DBIx::Class2::Admin'        => {
         ignore => [ qw/
             BUILD
         /]
      },
 
-    'DBIx::Class::Storage::DBI::Replicated*'        => {
+    'DBIx::Class2::Storage::DBI::Replicated*'        => {
         ignore => [ qw/
             connect_call_do_sql
             disconnect_call_do_sql
         /]
     },
 
-    'DBIx::Class::Storage::Debug::PrettyTrace'      => {
+    'DBIx::Class2::Storage::Debug::PrettyTrace'      => {
         ignore => [ qw/
           print
           query_start
@@ -124,38 +124,38 @@ my $exceptions = {
         /]
     },
 
-    'DBIx::Class::Admin::*'                         => { skip => 1 },
-    'DBIx::Class::Optional::Dependencies'           => { skip => 1 },
-    'DBIx::Class::ClassResolver::PassThrough'       => { skip => 1 },
-    'DBIx::Class::Componentised'                    => { skip => 1 },
-    'DBIx::Class::AccessorGroup'                    => { skip => 1 },
-    'DBIx::Class::Relationship::*'                  => { skip => 1 },
-    'DBIx::Class::ResultSetProxy'                   => { skip => 1 },
-    'DBIx::Class::ResultSourceProxy'                => { skip => 1 },
-    'DBIx::Class::ResultSource::*'                  => { skip => 1 },
-    'DBIx::Class::Storage::Statistics'              => { skip => 1 },
-    'DBIx::Class::Storage::DBI::Replicated::Types'  => { skip => 1 },
-    'DBIx::Class::GlobalDestruction'                => { skip => 1 },
-    'DBIx::Class::Storage::BlockRunner'             => { skip => 1 }, # temporary
+    'DBIx::Class2::Admin::*'                         => { skip => 1 },
+    'DBIx::Class2::Optional::Dependencies'           => { skip => 1 },
+    'DBIx::Class2::ClassResolver::PassThrough'       => { skip => 1 },
+    'DBIx::Class2::Componentised'                    => { skip => 1 },
+    'DBIx::Class2::AccessorGroup'                    => { skip => 1 },
+    'DBIx::Class2::Relationship::*'                  => { skip => 1 },
+    'DBIx::Class2::ResultSetProxy'                   => { skip => 1 },
+    'DBIx::Class2::ResultSourceProxy'                => { skip => 1 },
+    'DBIx::Class2::ResultSource::*'                  => { skip => 1 },
+    'DBIx::Class2::Storage::Statistics'              => { skip => 1 },
+    'DBIx::Class2::Storage::DBI::Replicated::Types'  => { skip => 1 },
+    'DBIx::Class2::GlobalDestruction'                => { skip => 1 },
+    'DBIx::Class2::Storage::BlockRunner'             => { skip => 1 }, # temporary
 
 # test some specific components whose parents are exempt below
-    'DBIx::Class::Relationship::Base'               => {},
+    'DBIx::Class2::Relationship::Base'               => {},
 
 # internals
-    'DBIx::Class::_Util'                            => { skip => 1 },
-    'DBIx::Class::SQLMaker*'                        => { skip => 1 },
-    'DBIx::Class::SQLAHacks*'                       => { skip => 1 },
-    'DBIx::Class::Storage::DBI*'                    => { skip => 1 },
+    'DBIx::Class2::_Util'                            => { skip => 1 },
+    'DBIx::Class2::SQLMaker*'                        => { skip => 1 },
+    'DBIx::Class2::SQLAHacks*'                       => { skip => 1 },
+    'DBIx::Class2::Storage::DBI*'                    => { skip => 1 },
     'SQL::Translator::*'                            => { skip => 1 },
 
 # deprecated / backcompat stuff
-    'DBIx::Class::Serialize::Storable'              => { skip => 1 },
-    'DBIx::Class::CDBICompat*'                      => { skip => 1 },
-    'DBIx::Class::ResultSetManager'                 => { skip => 1 },
-    'DBIx::Class::DB'                               => { skip => 1 },
+    'DBIx::Class2::Serialize::Storable'              => { skip => 1 },
+    'DBIx::Class2::CDBICompat*'                      => { skip => 1 },
+    'DBIx::Class2::ResultSetManager'                 => { skip => 1 },
+    'DBIx::Class2::DB'                               => { skip => 1 },
 
 # skipped because the synopsis covers it clearly
-    'DBIx::Class::InflateColumn::File'              => { skip => 1 },
+    'DBIx::Class2::InflateColumn::File'              => { skip => 1 },
 };
 
 my $ex_lookup = {};

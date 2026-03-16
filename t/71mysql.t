@@ -7,13 +7,13 @@ use Test::Warn;
 
 use DBI::Const::GetInfoType;
 use Scalar::Util qw/weaken/;
-use DBIx::Class::Optional::Dependencies ();
+use DBIx::Class2::Optional::Dependencies ();
 
 use lib qw(t/lib);
 use DBICTest;
 
-plan skip_all => 'Test needs ' . DBIx::Class::Optional::Dependencies->req_missing_for ('test_rdbms_mysql')
-  unless DBIx::Class::Optional::Dependencies->req_ok_for ('test_rdbms_mysql');
+plan skip_all => 'Test needs ' . DBIx::Class2::Optional::Dependencies->req_missing_for ('test_rdbms_mysql')
+  unless DBIx::Class2::Optional::Dependencies->req_ok_for ('test_rdbms_mysql');
 
 my ($dsn, $user, $pass) = @ENV{map { "DBICTEST_MYSQL_${_}" } qw/DSN USER PASS/};
 
@@ -365,7 +365,7 @@ ZEROINSEARCH: {
 {
   my $schema = DBICTest::Schema->connect($dsn, $user, $pass);
   $schema->resultset("Artist")->find(4);
-  isa_ok($schema->storage->sql_maker, 'DBIx::Class::SQLMaker::MySQL');
+  isa_ok($schema->storage->sql_maker, 'DBIx::Class2::SQLMaker::MySQL');
 }
 
 # make sure the mysql_auto_reconnect buggery is avoided
@@ -405,7 +405,7 @@ ZEROINSEARCH: {
 
     {
       local $TODO = "Perl $] is known to leak like a sieve"
-        if DBIx::Class::_ENV_::PEEPEENESS;
+        if DBIx::Class2::_ENV_::PEEPEENESS;
 
       ok (! defined $orig_dbh, 'Parent $dbh handle is gone');
     }
@@ -429,7 +429,7 @@ ZEROINSEARCH: {
 
     {
       local $TODO = "Perl $] is known to leak like a sieve"
-        if DBIx::Class::_ENV_::PEEPEENESS;
+        if DBIx::Class2::_ENV_::PEEPEENESS;
 
       ok (! defined $orig_dbh, 'DBIC operation triggered reconnect - old $dbh is gone');
     }

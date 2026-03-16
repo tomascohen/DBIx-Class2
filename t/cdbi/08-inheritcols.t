@@ -6,7 +6,7 @@ use lib 't/cdbi/testlib';
 use DBIC::Test::SQLite;
 
 package A;
-@A::ISA = qw(DBIx::Class::CDBICompat);
+@A::ISA = qw(DBIx::Class2::CDBICompat);
 __PACKAGE__->columns(Primary => 'id');
 
 package A::B;

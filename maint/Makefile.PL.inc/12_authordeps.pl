@@ -31,8 +31,8 @@ else {
 
 EOW
 
-  require DBIx::Class::Optional::Dependencies;
-  my %reqs_for_group = %{DBIx::Class::Optional::Dependencies->req_group_list};
+  require DBIx::Class2::Optional::Dependencies;
+  my %reqs_for_group = %{DBIx::Class2::Optional::Dependencies->req_group_list};
 
   # exclude the rdbms_* groups which are for DBIC users
   $opt_testdeps = {
@@ -111,7 +111,7 @@ END {
   }
   my $meta = do { local @ARGV = 'META.yml'; local $/; <> };
 
-  $meta =~ /^\Qname: DBIx-Class\E$/m or do {
+  $meta =~ /^\Qname: DBIx-Class2\E$/m or do {
     warn "Seemingly malformed META.yml...?\n";
     unlink 'Makefile';
     exit 1;

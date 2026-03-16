@@ -4,14 +4,14 @@ use warnings;
 use Test::More;
 use Test::Exception;
 use Test::Warn;
-use DBIx::Class::Optional::Dependencies ();
+use DBIx::Class2::Optional::Dependencies ();
 use lib qw(t/lib);
 use DBICTest;
 use DBICTest::Schema;
-use DBIx::Class::_Util 'sigwarn_silencer';
+use DBIx::Class2::_Util 'sigwarn_silencer';
 
-plan skip_all => 'Inflation tests need ' . DBIx::Class::Optional::Dependencies->req_missing_for ('test_dt_mysql')
-  unless DBIx::Class::Optional::Dependencies->req_ok_for ('test_dt_mysql');
+plan skip_all => 'Inflation tests need ' . DBIx::Class2::Optional::Dependencies->req_missing_for ('test_dt_mysql')
+  unless DBIx::Class2::Optional::Dependencies->req_ok_for ('test_dt_mysql');
 
 {
   DBICTest::Schema->load_classes('EventTZ');
@@ -64,7 +64,7 @@ foreach my $tbl (qw/EventTZ EventTZDeprecated/) {
           created_on => DateTime->new(year=>2006, month=>1, day=>31, hour => 13, minute => 34, second => 56 ),
         });
       },
-      qr/You're using a floating timezone, please see the documentation of DBIx::Class::InflateColumn::DateTime for an explanation/,
+      qr/You're using a floating timezone, please see the documentation of DBIx::Class2::InflateColumn::DateTime for an explanation/,
       'Floating timezone warning'
     );
   };

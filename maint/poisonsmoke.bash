@@ -8,7 +8,7 @@ clear
 echo
 
 export TRAVIS=true
-export TRAVIS_REPO_SLUG="x/DBIx-Class"
+export TRAVIS_REPO_SLUG="x/DBIx-Class2"
 export DBI_DSN="dbi:ODBC:server=NonexistentServerAddress"
 export DBI_DRIVER="ADO"
 

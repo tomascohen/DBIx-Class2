@@ -3,7 +3,7 @@
 use warnings;
 use strict;
 
-use DBIx::Class::_Util; # load early in case any shims are needed
+use DBIx::Class2::_Util; # load early in case any shims are needed
 
 my $lib_dir = 'lib';
 my $pod_dir = 'maint/.Generated_Pod';
@@ -32,11 +32,11 @@ Pod::Inherit->new({
    out_dir           => "$pod_dir/lib",
    force_permissions => 1,
    class_map         => {
-      "DBIx::Class::Relationship::HasMany"    => "DBIx::Class::Relationship",
-      "DBIx::Class::Relationship::HasOne"     => "DBIx::Class::Relationship",
-      "DBIx::Class::Relationship::BelongsTo"  => "DBIx::Class::Relationship",
-      "DBIx::Class::Relationship::ManyToMany" => "DBIx::Class::Relationship",
-      "DBIx::Class::ResultSourceProxy"        => "DBIx::Class::ResultSource",
+      "DBIx::Class2::Relationship::HasMany"    => "DBIx::Class2::Relationship",
+      "DBIx::Class2::Relationship::HasOne"     => "DBIx::Class2::Relationship",
+      "DBIx::Class2::Relationship::BelongsTo"  => "DBIx::Class2::Relationship",
+      "DBIx::Class2::Relationship::ManyToMany" => "DBIx::Class2::Relationship",
+      "DBIx::Class2::ResultSourceProxy"        => "DBIx::Class2::ResultSource",
    },
    # skip the deprecated classes that give out *DEPRECATED* warnings
    skip_classes      => [ qw(
@@ -60,16 +60,16 @@ Pod::Inherit->new({
    ],
    # these appear everywhere, and are typically lower-level methods not used by the general user
    skip_inherits     => [ qw/
-      DBIx::Class
-      DBIx::Class::Componentised
+      DBIx::Class2
+      DBIx::Class2::Componentised
       Class::C3::Componentised
-      DBIx::Class::AccessorGroup
+      DBIx::Class2::AccessorGroup
       Class::Accessor::Grouped
       Moose::Object
       Exporter
    / ],
    force_inherits    => {
-      'DBIx::Class::Manual::ResultClass' => 'DBIx::Class::Core',  # this forces the contents of ::Core to be dumped into the POD doc for ::ResultClass
+      'DBIx::Class2::Manual::ResultClass' => 'DBIx::Class2::Core',  # this forces the contents of ::Core to be dumped into the POD doc for ::ResultClass
    },
    dead_links        => '',
    method_format     => 'L<%m|%c/%m>',

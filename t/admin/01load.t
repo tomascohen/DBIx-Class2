@@ -7,12 +7,12 @@ use lib 't/lib';
 use DBICTest;
 
 BEGIN {
-    require DBIx::Class;
-    plan skip_all => 'Test needs ' . DBIx::Class::Optional::Dependencies->req_missing_for('admin')
-      unless DBIx::Class::Optional::Dependencies->req_ok_for('admin');
+    require DBIx::Class2;
+    plan skip_all => 'Test needs ' . DBIx::Class2::Optional::Dependencies->req_missing_for('admin')
+      unless DBIx::Class2::Optional::Dependencies->req_ok_for('admin');
 }
 
-use_ok 'DBIx::Class::Admin';
+use_ok 'DBIx::Class2::Admin';
 
 
 done_testing;

@@ -9,10 +9,10 @@ use lib qw(t/lib);
 use DBICTest;
 
 BEGIN {
-  require DBIx::Class;
+  require DBIx::Class2;
   plan skip_all =>
-      'Test needs ' . DBIx::Class::Optional::Dependencies->req_missing_for ('deploy')
-    unless DBIx::Class::Optional::Dependencies->req_ok_for ('deploy')
+      'Test needs ' . DBIx::Class2::Optional::Dependencies->req_missing_for ('deploy')
+    unless DBIx::Class2::Optional::Dependencies->req_ok_for ('deploy')
 }
 
 local $ENV{DBI_DSN};

@@ -10,8 +10,8 @@ my @example_pop_cmd = qw( -I lib -I examples/Schema -- examples/Schema/insertdb.
 # If the author doesn't have the prereqs, still generate a Makefile
 # The EUMM build-stage generation will run unconditionally and
 # errors will not be ignored unlike here
-require DBIx::Class::Optional::Dependencies;
-if ( DBIx::Class::Optional::Dependencies->req_ok_for ('deploy') ) {
+require DBIx::Class2::Optional::Dependencies;
+if ( DBIx::Class2::Optional::Dependencies->req_ok_for ('deploy') ) {
   print "Regenerating $test_ddl_fn\n";
   system( $^X, @test_ddl_cmd, '--ddl-out' => $test_ddl_fn );
 

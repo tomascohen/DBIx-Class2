@@ -4,10 +4,10 @@ use warnings;
 use Test::More;
 use lib qw(t/lib);
 use DBICTest ':DiffSQL';
-use DBIx::Class::_Util 'sigwarn_silencer';
+use DBIx::Class2::_Util 'sigwarn_silencer';
 
-use DBIx::Class::SQLMaker;
-my $sa = DBIx::Class::SQLMaker->new;
+use DBIx::Class2::SQLMaker;
+my $sa = DBIx::Class2::SQLMaker->new;
 
 $SIG{__WARN__} = sigwarn_silencer( qr/\Q{from} structures with conditions not conforming to the SQL::Abstract::Classic syntax are deprecated/ );
 

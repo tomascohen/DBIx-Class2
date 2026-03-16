@@ -9,7 +9,7 @@ use DBICTest;
 
 {
   package DBICTest::Legacy::Storage;
-  use base 'DBIx::Class::Storage::DBI::SQLite';
+  use base 'DBIx::Class2::Storage::DBI::SQLite';
 
   use Data::Dumper::Concise;
 

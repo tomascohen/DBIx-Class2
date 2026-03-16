@@ -6,8 +6,8 @@ use lib qw(t/lib);
 use DBICTest ':DiffSQL';
 
 my ($LIMIT, $OFFSET) = (
-   DBIx::Class::SQLMaker::ClassicExtensions->__rows_bindtype,
-   DBIx::Class::SQLMaker::ClassicExtensions->__offset_bindtype,
+   DBIx::Class2::SQLMaker::ClassicExtensions->__rows_bindtype,
+   DBIx::Class2::SQLMaker::ClassicExtensions->__offset_bindtype,
 );
 
 my $schema = DBICTest->init_schema;

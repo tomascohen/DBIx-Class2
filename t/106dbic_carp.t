@@ -9,7 +9,7 @@ use Test::Warn;
 use Test::Exception;
 use lib 't/lib';
 use DBICTest;
-use DBIx::Class::Carp;
+use DBIx::Class2::Carp;
 
 {
   sub DBICTest::DBICCarp::frobnicate {
@@ -32,7 +32,7 @@ use DBIx::Class::Carp;
 {
   {
     package DBICTest::DBICCarp::Exempt;
-    use DBIx::Class::Carp;
+    use DBIx::Class2::Carp;
 
     sub _skip_namespace_frames { qr/^DBICTest::DBICCarp::Exempt/ }
 

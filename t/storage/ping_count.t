@@ -9,11 +9,11 @@ my $ping_count = 0;
 
 {
   local $SIG{__WARN__} = sub {};
-  require DBIx::Class::Storage::DBI;
+  require DBIx::Class2::Storage::DBI;
 
-  my $ping = \&DBIx::Class::Storage::DBI::_ping;
+  my $ping = \&DBIx::Class2::Storage::DBI::_ping;
 
-  *DBIx::Class::Storage::DBI::_ping = sub {
+  *DBIx::Class2::Storage::DBI::_ping = sub {
     $ping_count++;
     goto &$ping;
   };

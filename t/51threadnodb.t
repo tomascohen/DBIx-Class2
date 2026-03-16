@@ -15,7 +15,7 @@ use threads;
 use strict;
 use warnings;
 use Test::More;
-use DBIx::Class::_Util 'sigwarn_silencer';
+use DBIx::Class2::_Util 'sigwarn_silencer';
 
 use lib qw(t/lib);
 use DBICTest;

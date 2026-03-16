@@ -3,9 +3,9 @@ package    # hide from PAUSE
 
 use strict;
 use warnings;
-use base 'DBIx::Class::Core';
+use base 'DBIx::Class2::Core';
 
-__PACKAGE__->table_class('DBIx::Class::ResultSource::View');
+__PACKAGE__->table_class('DBIx::Class2::ResultSource::View');
 __PACKAGE__->table('a_name_artists');
 __PACKAGE__->result_source_instance->view_definition(
     "SELECT id,name FROM artist WHERE name like 'a%'"
