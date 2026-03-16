@@ -8,7 +8,9 @@ use strict;
 # leaving the compat layer as-is, something may in fact depend on that
 use warnings FATAL => 'all';
 
+no warnings 'once';
 *pager = \&page;
+use warnings FATAL => 'all';
 
 sub page {
   my $class = shift;
