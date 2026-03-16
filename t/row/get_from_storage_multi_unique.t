@@ -24,12 +24,12 @@ local $SIG{__DIE__} = sub {
 
 subtest 'get_from_storage with single unique constraint (baseline)' => sub {
   my $bookmark = $schema->resultset('Bookmark')->create({ link => 1 });
-  
+
   lives_ok {
     my $refreshed = $bookmark->get_from_storage;
     is($refreshed->id, $bookmark->id, 'Got same row back');
   } 'works with single unique constraint (primary key only)';
-  
+
   $bookmark->delete;
 };
 
@@ -40,13 +40,13 @@ subtest 'get_from_storage with multiple unique constraints' => sub {
     rank => 10,
     charfield => 'testchar',
   });
-  
+
   lives_ok {
     my $refreshed = $artist->get_from_storage;
     is($refreshed->artistid, $artist->artistid, 'Got same row back');
     is($refreshed->name, 'Test Artist', 'Name matches');
   } 'works with multiple unique constraints';
-  
+
   $artist->delete;
 };
 
@@ -55,14 +55,14 @@ subtest 'get_from_storage after modification' => sub {
     name => 'Modifiable Artist',
     rank => 5,
   });
-  
+
   $artist->rank(6);
-  
+
   lives_ok {
     my $refreshed = $artist->get_from_storage;
     is($refreshed->rank, 5, 'Got original value from storage');
   } 'works after object modification';
-  
+
   $artist->delete;
 };
 
@@ -71,16 +71,16 @@ subtest 'get_from_storage within transaction' => sub {
     name => 'Transactional Artist',
     rank => 7,
   });
-  
+
   $schema->txn_do(sub {
     $artist->rank(8);
-    
+
     lives_ok {
       my $refreshed = $artist->get_from_storage;
       is($refreshed->rank, 7, 'Got original value from storage');
     } 'works within transaction';
   });
-  
+
   $artist->delete;
 };
 
@@ -91,12 +91,12 @@ subtest 'get_from_storage with composite unique constraint' => sub {
     position => 99,
     title => 'Test Track',
   });
-  
+
   lives_ok {
     my $refreshed = $track->get_from_storage;
     is($refreshed->trackid, $track->trackid, 'Got same row back');
   } 'works with composite unique constraints';
-  
+
   $track->delete;
 };
 
@@ -106,21 +106,21 @@ subtest 'discard_changes with multiple unique constraints' => sub {
     name => 'Discard Test',
     rank => 12,
   });
-  
+
   $artist->name('Modified Name');
   $artist->rank(99);
-  
+
   lives_ok {
     $artist->discard_changes;
     is($artist->name, 'Discard Test', 'Name was discarded');
     is($artist->rank, 12, 'Rank was discarded');
   } 'discard_changes works with multiple unique constraints';
-  
+
   $artist->delete;
 };
 
 # The bug: even though find() catches these errors, __DIE__ handlers see them
-is(scalar(@die_handler_errors), 0, 'No constraint errors should be thrown (even to __DIE__ handlers)') 
+is(scalar(@die_handler_errors), 0, 'No constraint errors should be thrown (even to __DIE__ handlers)')
   or diag("Errors seen: " . join("\n", map { (split /\n/, $_)[0] } @die_handler_errors));
 
 done_testing;

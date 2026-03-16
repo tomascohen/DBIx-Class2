@@ -2,8 +2,8 @@ use File::Path();
 use File::Glob();
 
 # leftovers in old checkouts
-unlink 'lib/DBIx/Class/Optional/Dependencies.pod'
-  if -f 'lib/DBIx/Class/Optional/Dependencies.pod';
+unlink 'lib/DBIx/Class2/Optional/Dependencies.pod'
+  if -f 'lib/DBIx/Class2/Optional/Dependencies.pod';
 File::Path::rmtree( File::Glob::bsd_glob('.generated_pod'), { verbose => 0 } )
   if -d '.generated_pod';
 
@@ -93,7 +93,7 @@ EOP
 }
 
 
-# generate the DBIx/Class.pod only during distdir
+# generate the DBIx/Class2.pod only during distdir
 {
   my $dist_pod_fn = File::Spec->catfile($pod_dir, qw(lib DBIx Class.pod));
 
@@ -103,7 +103,7 @@ clonedir_generate_files : dbic_distdir_gen_dbic_pod
 
 dbic_distdir_gen_dbic_pod :
 
-\tperldoc -u lib/DBIx/Class.pm > $dist_pod_fn
+\tperldoc -u lib/DBIx/Class2.pm > $dist_pod_fn
 \t@{[ $mm_proto->oneliner(
   "s!^.*?this line is replaced with the author list.*! qq{List of the awesome contributors who made DBIC v$ver possible\n\n} . qx(\$^X -Ilib maint/gen_pod_authors)!me",
   [qw( -0777 -p -i )]

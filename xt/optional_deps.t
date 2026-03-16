@@ -14,7 +14,7 @@ is_deeply([], []);
 # record contents of %INC - makes sure there are no extra deps slipping into
 # Opt::Dep.
 my $inc_before = [ keys %INC ];
-ok ( (! grep { $_ =~ m|DBIx/Class| } @$inc_before ), 'Nothing DBIC related is yet loaded');
+ok ( (! grep { $_ =~ m|DBIx/Class2| } @$inc_before ), 'Nothing DBIC related is yet loaded');
 
 # DBIx::Class2::Optional::Dependencies queries $ENV at compile time
 # to build the optional requirements
@@ -29,7 +29,7 @@ my $inc_after = [ keys %INC ];
 
 is_deeply (
   [ sort @$inc_after],
-  [ sort (@$inc_before, 'DBIx/Class/Optional/Dependencies.pm') ],
+  [ sort (@$inc_before, 'DBIx/Class2/Optional/Dependencies.pm') ],
   'Nothing loaded other than DBIx::Class2::OptDeps',
 );
 

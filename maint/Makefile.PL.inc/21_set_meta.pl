@@ -38,7 +38,7 @@ license 'perl';
 resources 'license' => 'http://dev.perl.org/licenses/';
 
 # misc resources
-abstract_from 'lib/DBIx/Class.pm';
+abstract_from 'lib/DBIx/Class2.pm';
 resources 'repository'  => 'https://github.com/Perl5/DBIx-Class2';
 resources 'bugtracker'  => 'https://rt.cpan.org/Public/Dist/Display.html?Name=DBIx-Class2';
 
@@ -48,9 +48,9 @@ dynamic_config 0;
 
 # Deprecated/internal modules need no exposure when building the meta
 no_index directory => $_ for (qw|
-  lib/DBIx/Class/Admin
-  lib/DBIx/Class/PK/Auto
-  lib/DBIx/Class/CDBICompat
+  lib/DBIx/Class2/Admin
+  lib/DBIx/Class2/PK/Auto
+  lib/DBIx/Class2/CDBICompat
   maint
 |);
 no_index package => $_ for (qw/

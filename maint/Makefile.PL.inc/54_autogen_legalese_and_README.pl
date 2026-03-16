@@ -27,7 +27,7 @@ clonedir_generate_files : dbic_clonedir_gen_readme
 
 dbic_clonedir_gen_readme : dbic_distdir_gen_dbic_pod
 @{[ $start_file->($r_fn) ]}
-\tpod2text $dir/lib/DBIx/Class.pod >> $r_fn
+\tpod2text $dir/lib/DBIx/Class2.pod >> $r_fn
 
 create_distdir : dbic_distdir_regen_license
 

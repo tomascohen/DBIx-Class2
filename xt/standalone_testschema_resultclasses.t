@@ -16,7 +16,7 @@ use lib 't/lib';
 my $worker = sub {
   my $fn = shift;
 
-  if (my @offenders = grep { $_ !~ m{DBIx/Class/(?:_Util|Carp)\.pm} } grep { $_ =~ /(^|\/)DBI/ } keys %INC) {
+  if (my @offenders = grep { $_ !~ m{DBIx/Class2/(?:_Util|Carp)\.pm} } grep { $_ =~ /(^|\/)DBI/ } keys %INC) {
     die "Wtf - DBI* modules present in %INC: @offenders";
   }
 

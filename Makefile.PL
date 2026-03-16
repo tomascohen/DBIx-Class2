@@ -37,7 +37,7 @@ BEGIN {
 }
 
 name         'DBIx-Class2';
-version_from 'lib/DBIx/Class.pm';
+version_from 'lib/DBIx/Class2.pm';
 perl_version '5.008001';
 
 ###

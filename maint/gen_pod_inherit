@@ -8,7 +8,7 @@ use DBIx::Class2::_Util; # load early in case any shims are needed
 my $lib_dir = 'lib';
 my $pod_dir = 'maint/.Generated_Pod';
 
-my $result_metapod_fn = "$lib_dir/DBIx/Class/Manual/ResultClass.pod";
+my $result_metapod_fn = "$lib_dir/DBIx/Class2/Manual/ResultClass.pod";
 
 die "POD generator must be executed from the dist root\n"
   unless -d $lib_dir and -d $pod_dir;
@@ -40,23 +40,23 @@ Pod::Inherit->new({
    },
    # skip the deprecated classes that give out *DEPRECATED* warnings
    skip_classes      => [ qw(
-      lib/DBIx/Class/Storage/DBI/Sybase/MSSQL.pm
-      lib/DBIx/Class/Serialize/Storable.pm
-      lib/DBIx/Class/ResultSetManager.pm
-      lib/DBIx/Class/InflateColumn/File.pm
-      lib/DBIx/Class/DB.pm
-      lib/DBIx/Class/CDBICompat/
-      lib/DBIx/Class/CDBICompat.pm
+      lib/DBIx/Class2/Storage/DBI/Sybase/MSSQL.pm
+      lib/DBIx/Class2/Serialize/Storable.pm
+      lib/DBIx/Class2/ResultSetManager.pm
+      lib/DBIx/Class2/InflateColumn/File.pm
+      lib/DBIx/Class2/DB.pm
+      lib/DBIx/Class2/CDBICompat/
+      lib/DBIx/Class2/CDBICompat.pm
    ),
    # skip the ::Storage:: family for now
    qw(
-      lib/DBIx/Class/Storage/
-      lib/DBIx/Class/Storage.pm
+      lib/DBIx/Class2/Storage/
+      lib/DBIx/Class2/Storage.pm
    ),
-      'lib/DBIx/Class/Storage/DBI/Replicated/Pool.pm',  # this one just errors out with: The 'add_attribute' method cannot be called on an immutable instance
-      'lib/DBIx/Class/Relationship.pm',                 # it already documents its own inheritors
-      'lib/DBIx/Class/Core.pm',                         # we actually don't want this populated in favor of redirecting users to the ResultClass docs
-      'lib/DBIx/Class/Optional/Dependencies.pm'         # the POD is already auto-generated
+      'lib/DBIx/Class2/Storage/DBI/Replicated/Pool.pm',  # this one just errors out with: The 'add_attribute' method cannot be called on an immutable instance
+      'lib/DBIx/Class2/Relationship.pm',                 # it already documents its own inheritors
+      'lib/DBIx/Class2/Core.pm',                         # we actually don't want this populated in favor of redirecting users to the ResultClass docs
+      'lib/DBIx/Class2/Optional/Dependencies.pm'         # the POD is already auto-generated
    ],
    # these appear everywhere, and are typically lower-level methods not used by the general user
    skip_inherits     => [ qw/

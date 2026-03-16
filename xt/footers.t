@@ -29,11 +29,11 @@ find({
     if ($data !~ /^=head1 NAME/m) {
 
       # the generator is full of false positives, .pod is where it's at
-      return if $fn =~ qr{\Qlib/DBIx/Class/Optional/Dependencies.pm};
+      return if $fn =~ qr{\Qlib/DBIx/Class2/Optional/Dependencies.pm};
 
       ok ( $data !~ /\bcopyright\b/i, "No copyright notices in $fn without apparent POD" );
     }
-    elsif ($fn =~ qr{\Qlib/DBIx/Class.}) {
+    elsif ($fn =~ qr{\Qlib/DBIx/Class2.}) {
       # nothing to check there - a static set of words
     }
     else {

@@ -5,7 +5,7 @@ use strict;
 use warnings;
 
 BEGIN {
-  if ($INC{'DBIx/Class.pm'}) {
+  if ($INC{'DBIx/Class2.pm'}) {
     my ($fr, @frame) = 1;
     while (@frame = caller($fr++)) {
       last if $frame[1] !~ m|^t/lib/DBICTest|;
@@ -124,7 +124,7 @@ sub _check_author_makefile {
   my $root = _find_co_root()
     or return;
 
-  my $optdeps = file('lib/DBIx/Class/Optional/Dependencies.pm');
+  my $optdeps = file('lib/DBIx/Class2/Optional/Dependencies.pm');
 
   # not using file->stat as it invokes File::stat which in turn breaks stat(_)
   my ($mf_pl_mtime, $mf_mtime, $optdeps_mtime) = ( map
@@ -177,7 +177,7 @@ attempting a regular installation be it through CPAN or manually),
 please report the situation to either the mailing list or to the
 irc channel as described in
 
-http://search.cpan.org/dist/DBIx-Class2/lib/DBIx/Class.pm#GETTING_HELP/SUPPORT
+http://search.cpan.org/dist/DBIx-Class2/lib/DBIx/Class2.pm#GETTING_HELP/SUPPORT
 
 The DBIC team
 

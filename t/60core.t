@@ -244,7 +244,7 @@ SKIP: {
 
 throws_ok (sub {
   $schema->class("Track")->load_components('DoesNotExist');
-}, qr!Can't locate DBIx/Class/DoesNotExist.pm!, 'exception on nonexisting component');
+}, qr!Can't locate DBIx/Class2/DoesNotExist.pm!, 'exception on nonexisting component');
 
 is($schema->class("Artist")->field_name_for->{name}, 'artist name', 'mk_classdata usage ok');
 

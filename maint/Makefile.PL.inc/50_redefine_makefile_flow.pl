@@ -62,7 +62,7 @@ EOM
   sub init_PM {
     my $self = shift;
     my $rv = $self->SUPER::init_PM(@_);
-    delete @{$self->{PM}}{qw(lib/DBIx/Class/Manual/ResultClass.pod lib/DBIx/Class/Manual/ResultClass.pod.proto)};
+    delete @{$self->{PM}}{qw(lib/DBIx/Class2/Manual/ResultClass.pod lib/DBIx/Class2/Manual/ResultClass.pod.proto)};
     $rv
   }
 }
