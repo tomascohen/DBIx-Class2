@@ -119,6 +119,52 @@ subtest 'discard_changes with multiple unique constraints' => sub {
   $artist->delete;
 };
 
+subtest 'get_from_storage on table without primary key' => sub {
+  my $nopk_rs = $schema->resultset('NoPrimaryKey');
+
+  # NoPrimaryKey has no PK but has unique constraint foo_bar on (foo, bar)
+  my $row = $nopk_rs->create({
+    foo => 100,
+    bar => 200,
+    baz => 300,
+  });
+
+  lives_ok {
+    my $refreshed = $row->get_from_storage;
+    ok( defined $refreshed, 'got a result back' );
+    is( $refreshed->baz, 300, 'correct row returned' );
+  } 'get_from_storage works on table without primary key';
+
+  # Verify it picks up changes from storage
+  $nopk_rs->search({ foo => 100, bar => 200 })->update({ baz => 999 });
+
+  lives_ok {
+    my $refreshed = $row->get_from_storage;
+    is( $refreshed->baz, 999, 'picks up updated value from storage' );
+  } 'get_from_storage reflects storage changes on no-PK table';
+
+  $nopk_rs->search({ foo => 100, bar => 200 })->delete;
+};
+
+subtest 'discard_changes on table without primary key' => sub {
+  my $nopk_rs = $schema->resultset('NoPrimaryKey');
+
+  my $row = $nopk_rs->create({
+    foo => 101,
+    bar => 201,
+    baz => 301,
+  });
+
+  $row->baz(999);
+
+  lives_ok {
+    $row->discard_changes;
+    is( $row->baz, 301, 'baz was discarded' );
+  } 'discard_changes works on table without primary key';
+
+  $nopk_rs->search({ foo => 101, bar => 201 })->delete;
+};
+
 # The bug: even though find() catches these errors, __DIE__ handlers see them
 is(scalar(@die_handler_errors), 0, 'No constraint errors should be thrown (even to __DIE__ handlers)')
   or diag("Errors seen: " . join("\n", map { (split /\n/, $_)[0] } @die_handler_errors));

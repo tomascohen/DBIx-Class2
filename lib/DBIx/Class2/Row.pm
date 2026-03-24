@@ -1497,7 +1497,18 @@ sub get_from_storage {
       $resultset = $resultset->search(undef, $attrs);
     }
 
-    return $resultset->find($self->_storage_ident_condition, { key => "primary" });
+    if ($self->result_source->primary_columns) {
+      return $resultset->find($self->_storage_ident_condition, { key => "primary" });
+    }
+
+    # No primary key defined — fall back to heuristics mode using all column
+    # values so find() can match against any available unique constraint.
+    my %cond;
+    for my $col ($self->result_source->columns) {
+      $cond{$col} = $self->get_column($col)
+        if $self->has_column_loaded($col);
+    }
+    return $resultset->find(\%cond);
 }
 
 =head2 discard_changes
